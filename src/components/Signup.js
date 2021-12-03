@@ -1,28 +1,48 @@
-import React from 'react';
+import React, { useState ,useEffect} from 'react';
 
 const Signup = () => {
+    const [data,setData] = useState({
+        username:"",
+        email:"",
+        password:"",
+        confirmpassword:"",
+        isAccepted:false,
+    })
+
+    const changeHandler = (event) => {
+        if (event.target.name === 'isAccepted') {
+            setData({...data,[event.target.name]:event.target.checked})
+        }else{
+
+            setData({...data,[event.target.name]:event.target.value})
+        }
+        
+    }
+    useEffect(()=>{
+        console.log(data);
+    },[data])
     return (
         <div>
             <form>
                 <div>
                     <label>username</label>
-                    <input type="text"  />
+                    <input type="text" name="username" value={data.username}  onChange={changeHandler}/>
                 </div>
                 <div>
                     <label>email</label>
-                    <input type="email"  />
+                    <input type="email" name="email" value={data.email}  onChange={changeHandler}/>
                 </div>
                 <div>
                     <label>password</label>
-                    <input type="password"  />
+                    <input type="password" name="password" value={data.password}  onChange={changeHandler}/>
                 </div>
                 <div>
                     <label>confirmpassword</label>
-                    <input type="password"  />
+                    <input type="password" name="confirmpassword" value={data.confirmpassword}  onChange={changeHandler}/>
                 </div>
                 <div>
                     <label>your accept our rules</label>
-                    <input type="checkbox"  />
+                    <input type="checkbox" name="isAccepted"  value={data.isAccepted} onChange={changeHandler}/>
                 </div>
                 <div>
                     <a href="/#">login</a>
