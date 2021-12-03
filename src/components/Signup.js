@@ -1,5 +1,5 @@
 import React, { useState ,useEffect} from 'react';
-
+import { validate } from './validate';
 const Signup = () => {
     const [data,setData] = useState({
         username:"",
@@ -8,6 +8,7 @@ const Signup = () => {
         confirmpassword:"",
         isAccepted:false,
     })
+    const [errors,setErrors] = useState({})
 
     const changeHandler = (event) => {
         if (event.target.name === 'isAccepted') {
@@ -19,8 +20,11 @@ const Signup = () => {
         
     }
     useEffect(()=>{
-        console.log(data);
+        setErrors(validate(data,'signup'));
     },[data])
+    useEffect(()=>{
+        console.log(errors);
+    },[errors])
     return (
         <div>
             <form>
