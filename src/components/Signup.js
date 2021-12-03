@@ -23,13 +23,27 @@ const Signup = () => {
     const focusHandler = (event) =>{
         setTouch({...touched,[event.target.name]:true})
     }
+    
+    const submitHandler = (e) =>{
+        e.preventDefault()
+        if (!Object.keys(errors).length) {
+            console.log(data);
+        } else {
+            setTouch({
+                username:true,
+                email:true,
+                password:true,
+                confirmpassword:true,
+                isAccepted:true,
+            })
+        }
+    }
     useEffect(()=>{
         setErrors(validate(data,'signup'));
     },[data])
-    
     return (
         <div>
-            <form>
+            <form onSubmit={submitHandler}>
                 <div>
                     <label>username</label>
                     <input type="text" name="username" value={data.username}  onChange={changeHandler} onFocus={focusHandler}/>
