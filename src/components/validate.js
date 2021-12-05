@@ -10,13 +10,7 @@ export const validate = (data,type) =>{
             delete errors.username;
         }
         
-        if (!data.password) {
-            errors.password = "Password required."
-        } else if(data.password.length <6) {
-            errors.password = "password need to be 6 character or more.";
-        }else {
-            delete errors.password;
-        }
+        
         if (!data.confirmpassword) {
             errors.confirmpassword = "Confirmpassword required."
         } else if (data.confirmpassword !== data.password) {
@@ -26,6 +20,11 @@ export const validate = (data,type) =>{
             delete errors.confirmpassword;
         }
         
+        if (data.isAccepted) {
+            delete errors.isAccepted
+        } else {
+            errors.isAccepted = "Accepte our regulations.";
+        }
     }
     if (!data.email) {
         errors.email = "Email required";
@@ -34,10 +33,12 @@ export const validate = (data,type) =>{
     }else {
         delete errors.email
     }
-    if (data.isAccepted) {
-        delete errors.isAccepted
-    } else {
-        errors.isAccepted = "Accepte our regulations.";
+    if (!data.password) {
+        errors.password = "Password required."
+    } else if(data.password.length <6) {
+        errors.password = "password need to be 6 character or more.";
+    }else {
+        delete errors.password;
     }
 
     return errors ;
