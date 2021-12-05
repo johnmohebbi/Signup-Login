@@ -1,9 +1,10 @@
 import React, { useState ,useEffect} from 'react';
-import { ToastContainer,toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { validate } from './validate';
 import { notify } from './notify';
+import styles from "./styles/signup.module.css"
 const Signup = () => {
     const [data,setData] = useState({
         username:"",
@@ -47,40 +48,41 @@ const Signup = () => {
         setErrors(validate(data,'signup'));
     },[data])
     return (
-        <div>
-            <form onSubmit={submitHandler}>
-                <div>
-                    <label>username</label>
-                    <input type="text" name="username" value={data.username}  onChange={changeHandler} onFocus={focusHandler}/>
+        <div className={styles.container}>
+            <form onSubmit={submitHandler} className={styles.formContainer} autoComplete="off">
+                <h2>Sign Up</h2>
+                <div className={styles.formField}>
+                    <label className={styles.lbl}>username</label>
+                    <input  className={errors.username && touched.username &&styles.invalide} type="text" name="username" value={data.username}  onChange={changeHandler} onFocus={focusHandler}/>
                     {errors.username && touched.username && <span>{errors.username}</span>}
                 </div>
-                <div>
-                    <label>email</label>
-                    <input type="email" name="email" value={data.email}  onChange={changeHandler} onFocus={focusHandler}/>
+                <div className={styles.formField}>
+                    <label className={styles.lbl}>email</label>
+                    <input className={errors.email && touched.email &&styles.invalide} type="email" name="email" value={data.email}  onChange={changeHandler} onFocus={focusHandler}/>
                     {errors.email && touched.email && <span>{errors.email}</span>}
 
                 </div>
-                <div>
-                    <label>password</label>
-                    <input type="password" name="password" value={data.password}  onChange={changeHandler} onFocus={focusHandler}/>
+                <div className={styles.formField}>
+                    <label className={styles.lbl}>password</label>
+                    <input  className={errors.password && touched.password &&styles.invalide} type="password" name="password" value={data.password}  onChange={changeHandler} onFocus={focusHandler}/>
                     {errors.password && touched.password && <span>{errors.password}</span>}
                     
-                </div>
-                <div>
-                    <label>confirmpassword</label>
-                    <input type="password" name="confirmpassword" value={data.confirmpassword}  onChange={changeHandler} onFocus={focusHandler}/>
+                </div >
+                <div className={styles.formField}>
+                    <label className={styles.lbl}>confirmpassword</label>
+                    <input  className={errors.confirmpassword && touched.confirmpassword &&styles.invalide} type="password" name="confirmpassword" value={data.confirmpassword}  onChange={changeHandler} onFocus={focusHandler}/>
                     {errors.confirmpassword && touched.confirmpassword && <span>{errors.confirmpassword}</span>}
 
                 </div>
-                <div>
+                <div className={styles.isAccepted}>
                     <label>your accept our rules</label>
                     <input type="checkbox" name="isAccepted"  value={data.isAccepted} onChange={changeHandler} onBlur={focusHandler}/>
                     {errors.isAccepted && touched.isAccepted &&  <span>{errors.isAccepted}</span>}
                     
                 </div>
-                <div>
-                    <a href="/#">login</a>
-                    <button type="submit">signUp</button>
+                <div className={styles.btnsContainer}>
+                    <a href="/#">Login</a>
+                    <button type="submit">SignUp</button>
                 </div>
             </form>
             <ToastContainer/>
