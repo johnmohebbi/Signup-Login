@@ -1,4 +1,5 @@
 import React, { useState ,useEffect} from 'react';
+import { Link } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -55,7 +56,7 @@ const Login = () => {
                
                 
                 <div className={styles.btnsContainer}>
-                    <a href="/#">Login</a>
+                    <Link to="/signup">Signup</Link>
                     <button type="submit">SignUp</button>
                 </div>
             </form>
